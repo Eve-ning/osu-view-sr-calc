@@ -34,7 +34,8 @@ runs:
   steps:
     - uses: actions/checkout@v3
       with:
-        repository: Eve-ning/osu-view@c55fd2e6897e56fa72552eb97bcec0fd3e2bced1
+        repository: Eve-ning/osu-view
+        ref: 'c55fd2e6897e56fa72552eb97bcec0fd3e2bced1'
         submodules: 'true'
     - run: |
         cd projects/sr-calc/
