@@ -1,15 +1,11 @@
 # action.yml
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'Recalculate osu! SR'
+description: 'Recalculate osu! SR for maps given branches and query'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  db-url:  # id of input
+    description: 'osu! Database URL'
     required: true
-    default: 'World'
-outputs:
-  time: # id of output
-    value: '123'
-    description: 'The time we greeted you'
+    default: 'test-for-fail'
 runs:
   using: 'composite'
   steps:
@@ -17,10 +13,10 @@ runs:
         with:
           repository: Eve-ning/osu-view
           submodules: 'true'
-
       - run: |
           cd projects/sr-calc/
           chmod +x ./run.sh
+          sed -ie '/DB_URL=/s@=.*@=${{ inputs.db-url }}@' .env
           ./run.sh mytest << EOF
           1
           EOF
