@@ -7,6 +7,6 @@ jobs:
     steps:
       - name: Hello world action step
         id: hello
-        uses: Eve-ning/osu-view-sr-calc@v0.8
+        uses: Eve-ning/osu-view-sr-calc@v0.9
         with:
           db-url: 'test-for-fail'
