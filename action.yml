@@ -8,9 +8,18 @@ inputs:
     default: 'World'
 outputs:
   time: # id of output
+    value: '123'
     description: 'The time we greeted you'
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - ${{ inputs.who-to-greet }}
+  using: 'composite'
+  steps:
+    - run: |
+        echo 1 >> test.txt
+      shell: bash
+    - uses: actions/upload-artifact@v3
+      with:
+        name: test artifact
+        path: test.txt
+#  image: 'Dockerfile'
+#  args:
+#    - ${{ inputs.who-to-greet }}
