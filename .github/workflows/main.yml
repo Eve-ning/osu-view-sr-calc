@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: Hello world action step
         id: hello
-        uses: Eve-ning/osu-view-sr-calc@latest
+        uses: Eve-ning/osu-view-sr-calc
         with:
           who-to-greet: 'Mona the Octocat'
       # Use the output from the `hello` step
