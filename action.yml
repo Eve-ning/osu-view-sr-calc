@@ -39,13 +39,14 @@ runs:
     - run: |
         cd projects/sr-calc/
         chmod +x ./run.sh
-        sed -i -e '/DB_URL=/s@=.*@=${{ inputs.db-url }}@' \ 
-            -e '/FILES_URL=/s@=.*@=${{ inputs.files-url }}@' \ 
-            -e '/OSU_GIT=/s@=.*@=${{ inputs.osu-git }}@' \ 
-            -e '/OSU_GIT_BRANCH=/s@=.*@=${{ inputs.osu-git-branch }}@' \ 
-            -e '/OSU_TOOLS_GIT=/s@=.*@=${{ inputs.osu-tools-git }}@' \ 
-            -e '/OSU_TOOLS_GIT_BRANCH=/s@=.*@=${{ inputs.osu-tools-git-branch }}@' \ 
-            .env
+        
+        sed -ie '/DB_URL=/s@=.*@=${{ inputs.db-url }}@' .env 
+        sed -ie '/FILES_URL=/s@=.*@=${{ inputs.files-url }}@' .env 
+        sed -ie '/OSU_GIT=/s@=.*@=${{ inputs.osu-git }}@' .env 
+        sed -ie '/OSU_GIT_BRANCH=/s@=.*@=${{ inputs.osu-git-branch }}@' .env 
+        sed -ie '/OSU_TOOLS_GIT=/s@=.*@=${{ inputs.osu-tools-git }}@' .env 
+        sed -ie '/OSU_TOOLS_GIT_BRANCH=/s@=.*@=${{ inputs.osu-tools-git-branch }}@' .env 
+            
         echo ${{ inputs.files-sql-query }} > query.sql
         ./run.sh mytest << EOF
         1
