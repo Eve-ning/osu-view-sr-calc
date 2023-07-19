@@ -13,13 +13,34 @@ outputs:
 runs:
   using: 'composite'
   steps:
-    - run: |
-        echo 1 >> test.txt
-      shell: bash
-    - uses: actions/upload-artifact@v3
-      with:
-        name: test artifact
-        path: test.txt
+      - uses: actions/checkout@v3
+        with:
+          name: Eve-ning/osu-view
+          submodules: 'true'
+
+      - name: Runs Project
+        working-directory: projects/sr-calc/
+        shell: bash
+        run: |
+          chmod +x ./run.sh
+          ./run.sh mytest << EOF
+          1
+          EOF
+
+      - name: Assert Essential Project Files exist
+        shell: bash
+        run: |
+          if [ ! -f osu.view/sr-calc/mytest/nt.results.json ]; then
+            echo Missing expected nt.results.json 
+            exit 1
+          fi
+
+      - uses: actions/upload-artifact@v3
+        shell: bash
+        with:
+          name: SR Calculation Results
+          path: osu.view/sr-calc/mytest/
+
 #  image: 'Dockerfile'
 #  args:
 #    - ${{ inputs.who-to-greet }}
