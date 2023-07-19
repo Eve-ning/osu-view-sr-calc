@@ -25,7 +25,7 @@ with:
 - `files-sql-query`: SQL Query to pull relevant `beatmap_id` from the database. See `query.sql` of [osu! View](https://github.com/Eve-ning/osu-view/tree/master/projects/sr-calc)
 - `osu-git`: Git Repository of `osu` to use. See `OSU_GIT` of [osu! Tools on Docker](https://github.com/Eve-ning/osu-tools-docker)
 - `osu-git-branch`: Git Branch of the above
-- `osu-tools-git`: Git Repository of `osu-tools` to use. See `OSU_TOOLS_GIT` of [osu! Tools on Docker](https://github.com/Eve-ning/osu-tools-docker
+- `osu-tools-git`: Git Repository of `osu-tools` to use. See `OSU_TOOLS_GIT` of [osu! Tools on Docker](https://github.com/Eve-ning/osu-tools-docker)
 - `osu-tools-git-branch`: Git Branch of the above
 
 ## Outputs
