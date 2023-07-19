@@ -1,7 +1,7 @@
 FROM alpine
 
-
-COPY entrypoint.sh /entrypoint.sh
+WORKDIR /project/
+COPY ./entrypoint.sh /entrypoint.sh
 
 RUN chmod +x /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["bash", "-c", "/entrypoint.sh"]
