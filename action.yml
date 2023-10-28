@@ -54,4 +54,4 @@ runs:
     - uses: actions/upload-artifact@v3
       with:
         name: SR Calculation Results
-        path: osu.view/sr-calc/mytest/
+        path: osu.view/sr-calc
