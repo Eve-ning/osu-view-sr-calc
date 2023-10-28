@@ -9,15 +9,26 @@ Use my action in your GitHub Workflow.
 For example:
 
 ```yaml
-uses: Eve-ning/osu-view-sr-calc@v1
-with:
-  db-url: 'https://data.ppy.sh/2023_07_01_performance_mania_top_1000.tar.bz2'
-  files-url: 'https://data.ppy.sh/2023_07_01_osu_files.tar.bz2'
-  files-sql-query: 'SELECT beatmap_id FROM osu_beatmaps WHERE playmode=3 AND approved=1 AND difficultyrating>7 LIMIT 25'
-  osu-git: 'https://github.com/ppy/osu'
-  osu-git-branch: 'master'
-  osu-tools-git: 'https://github.com/Eve-ning/osu-tools'
-  osu-tools-git-branch: 'impl-strain-json'
+name: Run Eve-ning's osu!view SR calculator
+
+on:
+  pull_request:
+
+jobs:
+  sr-calc:
+    runs-on: ubuntu-latest
+    name: Osu!view SR calculator
+    steps:
+      - name: SR Calc
+        uses: Eve-ning/osu-view-sr-calc@master
+        with:
+          db-url: 'https://data.ppy.sh/2023_10_01_performance_mania_top_1000.tar.bz2'
+          files-url: 'https://data.ppy.sh/2023_10_01_osu_files.tar.bz2'
+          files-sql-query: 'SELECT beatmap_id FROM osu_beatmaps WHERE playmode=3 AND approved=1 AND difficultyrating>5'
+          osu-git: 'https://github.com/ppy/osu'
+          osu-git-branch: 'master'
+          osu-tools-git: 'https://github.com/ppy/osu-tools'
+          osu-tools-git-branch: 'master'
 ```
 
 - `db-url`: Database URL in data.ppy.sh. See `DB_URL` of [osu! Data on Docker](https://github.com/Eve-ning/osu-data-docker/#get-started)
