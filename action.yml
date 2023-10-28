@@ -46,7 +46,9 @@ runs:
              -o "${{ inputs.osu-git }}" \
              -o "${{ inputs.osu-git-branch }}" \
              -t "${{ inputs.osu-tools-git }}" \
-             -t "${{ inputs.osu-tools-git-branch }}"
+             -t "${{ inputs.osu-tools-git-branch }}" << EOF
+        1
+        EOF
       shell: bash
 
     - uses: actions/upload-artifact@v3
