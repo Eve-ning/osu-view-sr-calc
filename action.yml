@@ -40,18 +40,13 @@ runs:
     - run: |
         cd projects/sr-calc/
         chmod +x ./run.sh
-        
-        sed -ie '/DB_URL=/s@=.*@=${{ inputs.db-url }}@' .env 
-        sed -ie '/FILES_URL=/s@=.*@=${{ inputs.files-url }}@' .env 
-        sed -ie '/OSU_GIT=/s@=.*@=${{ inputs.osu-git }}@' .env 
-        sed -ie '/OSU_GIT_BRANCH=/s@=.*@=${{ inputs.osu-git-branch }}@' .env 
-        sed -ie '/OSU_TOOLS_GIT=/s@=.*@=${{ inputs.osu-tools-git }}@' .env 
-        sed -ie '/OSU_TOOLS_GIT_BRANCH=/s@=.*@=${{ inputs.osu-tools-git-branch }}@' .env 
-            
-        echo ${{ inputs.files-sql-query }} > query.sql
-        ./run.sh mytest << EOF
-        1
-        EOF
+        ./run.sh -y "${{ inputs.db-url }}" \
+             -z "${{ inputs.files-url }}" \
+             -q "${{ inputs.files-sql-query }}" \
+             -o "${{ inputs.osu-git }}" \
+             -o "${{ inputs.osu-git-branch }}" \
+             -t "${{ inputs.osu-tools-git }}" \
+             -t "${{ inputs.osu-tools-git-branch }}"
       shell: bash
 
     - uses: actions/upload-artifact@v3
